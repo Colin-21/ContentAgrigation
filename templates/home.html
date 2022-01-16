@@ -2,11 +2,19 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>About Flask</title>
+    <title>Test</title>
   </head>
   <body>
-    <div style="border-style: solid;">
-		<h2></h2>
+    {% block content %}
+    {% for article in nytimes %}
+    <div style="border-style: solid; margin: 5px; width: 30%;display: block; text-align: center;" href="{{ article['link'] }}">
+    <img src="{{ article['image'] }}" alt="{{ article['title'] }}" style="margin-left: auto; display: block; margin-right: auto; width: 50%;">
+		<h2>{{ article['title'] }}</h2>
+    <h4>By:{{ article['creator'] }}</h3>
+    <h4>Date:{{ article['pubDate'] }}</h3>
+    <p>{{ article['description'] }}</p>
 	</div>
+  {% endfor %}
+{% endblock %}
   </body>
 </html>

@@ -1,13 +1,14 @@
-def getnyt():
+def getnyt(page = "Technology"):
     import requests
     import xml.etree.ElementTree as ET
-    x = requests.get('https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml')
+    x = requests.get(f'https://rss.nytimes.com/services/xml/rss/nyt/{page}.xml')
+    #x = requests.get('https://api.nytimes.com/svc/topstories/v2/technology.json?api-key=ywBfrbs8rFYJ2aEGdCqWHQSz0eZlXDix')
 
     root = ET.fromstring(x.text)
     articles = []
     for child in root.findall('./channel/item'):
         article = {}
-        
+
         article['title'] = (child.find('title').text)
         article['description'] = (child.find('description').text)
         article['link'] = (child.find('link').text)
